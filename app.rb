@@ -11,6 +11,17 @@ require_relative "authentication.rb"
 # if the user is signed in, current_user will refer to the signed in user object.
 # if they are not signed in, current_user will be nil
 
+#make an admin user if one doesn't exist!
+if User.all(administrator: true).count == 0
+	u = User.new
+	u.fname = "Admin"
+	u.lname = "Istrator"
+	u.email = "admin@admin.com"
+	u.password = "admin"
+	u.administrator = true
+	u.save
+end
+
 class Post
 	include DataMapper::Resource
 	property :id, Serial
