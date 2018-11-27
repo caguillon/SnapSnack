@@ -19,7 +19,7 @@ class Order
 	property :id, Serial
 
     property :created_at, DateTime
-    
+    property :user, String #the user that is posting the task
     property :delivery_location, Text
     property :order_description, Text
     property :time_to_be_completed, Text
@@ -30,6 +30,7 @@ class Order
 end
 
 DataMapper.finalize
+Order.auto_upgrade!
 #the following urls are included in authentication.rb
 # GET /login
 # GET /logout
@@ -56,6 +57,7 @@ end
 
 get "/dashboard" do
 	authenticate!
+	@orders = Order.all
 	erb :dashboard
 end
 
@@ -64,7 +66,6 @@ get "/order" do
 	erb :orderform
 end
 
-#order table doesnt exist in database
 post "/order/create" do 
 	authenticate!
 	delivery = params["dloc"]
@@ -76,9 +77,11 @@ post "/order/create" do
 		o.delivery_location = delivery
 		o.order_description = order_des
 		o.time_to_be_completed = time_com
+		o.user = current_user.fname
 		o.save
 		"successfully added new order"
 	end
+	erb :dashboard
 end
 
 post "/charge" do
