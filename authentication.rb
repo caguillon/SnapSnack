@@ -35,10 +35,14 @@ end
 
 
 post "/register" do
+	fname = params[:fname]
+	lname = params[:lname]
 	email = params[:email]
 	password = params[:password]
 
 	u = User.new
+	u.fname = fname
+	u.lname = lname
 	u.email = email.downcase
 	u.password =  password
 	u.save
