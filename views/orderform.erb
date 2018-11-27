@@ -1,7 +1,22 @@
-<form action="/order/create" method="POST">
-	<br/>
-	Delivery Location: <input type="text" name="dloc" required><br/>
-	Order Description: <input type="text" name="odescription" required><br/>
-	Time for order to be completed: <input type="text" name="time" required><br/>
-	<input type="submit" value="Submit">
-</form>
+<div id="form" class="row justify-content-md-center mt-5">
+	<div class="card" style="width: 36rem;">
+	  <div class="card-body">
+  	  <h5 class="card-title">Place your order</h5>
+		<form action="/order/create" method="POST">
+			<div class="form-group">
+				<label for="deliver">Delivery</label>
+		    	<input type="textbox" class="form-control" name="dloc" aria-describedby="emailHelp" placeholder="Delivery">
+			</div>
+			<div class="form-group">
+				<label for="order">Order</label>
+		    	<input type="textbox" class="form-control" name="odescription" aria-describedby="emailHelp" placeholder="Order">
+			</div>
+			<div class="form-group">
+				<label for="time">When do you want it?</label>
+		    	<input type="textbox" class="form-control" name="time" aria-describedby="emailHelp" placeholder="Time">
+			</div>
+			<input type="submit" value="Submit">
+		</form>
+  		</div>
+	</div>
+</div>

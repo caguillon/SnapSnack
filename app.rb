@@ -79,9 +79,8 @@ post "/order/create" do
 		o.time_to_be_completed = time_com
 		o.user = current_user.fname
 		o.save
-		"successfully added new order"
 	end
-	erb :dashboard
+	erb :orderSubmission
 end
 
 post "/charge" do
@@ -99,8 +98,5 @@ post "/charge" do
 	  :currency    => 'usd',
 	  :customer    => customer.id
 	)
-	erb :charge
-	cu = current_user
-	cu.pro = true
-	cu.save
+	erb :index
   end
