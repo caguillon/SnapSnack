@@ -28,7 +28,7 @@ if User.all(administrator: true).count == 0
 	u.save
 end
 
-class Post
+class Order
 	include DataMapper::Resource
 	property :id, Serial
 
@@ -50,6 +50,11 @@ end
 get "/dashboard" do
 	authenticate!
 	erb :dashboard
+end
+
+get "/order" do
+	authenticate!
+	erb :orderform
 end
 
 post "/charge" do
