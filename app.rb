@@ -1,6 +1,12 @@
 require "sinatra"
 require 'sinatra/flash'
 require_relative "authentication.rb"
+require 'stripe'
+
+set :publishable_key, 'pk_test_GcpPtLGp2FWGxTcxzZdEd7fm'
+set :secret_key, 'sk_test_NkKAAhxeUkoDfJz9PpCew4jW'
+
+Stripe.api_key = settings.secret_key
 
 #the following urls are included in authentication.rb
 # GET /login
@@ -45,3 +51,24 @@ get "/dashboard" do
 	authenticate!
 	erb :dashboard
 end
+
+post "/charge" do
+	# Amount in cents
+	@amount = 500
+  
+	customer = Stripe::Customer.create(
+	  :email => 'customer@example.com',
+	  :source  => params[:stripeToken]
+	)
+  
+	charge = Stripe::Charge.create(
+	  :amount      => @amount,
+	  :description => 'Sinatra Charge',
+	  :currency    => 'usd',
+	  :customer    => customer.id
+	)
+	erb :charge
+	cu = current_user
+	cu.pro = true
+	cu.save
+  end
