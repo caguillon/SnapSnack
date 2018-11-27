@@ -12,9 +12,17 @@ end
 class User
     include DataMapper::Resource
     property :id, Serial
+
     property :email, String
     property :password, String
     property :created_at, DateTime
+    property :fname, String
+    property :lname, String
+    
+    #type of user - is there a better way for this?
+    property :administrator, Boolean, :default => false
+    property :consumer, Boolean, :default => false
+    property :delivery, Boolean, :default => false
 
     def login(password)
     	return self.password == password

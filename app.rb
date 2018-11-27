@@ -11,6 +11,21 @@ require_relative "authentication.rb"
 # if the user is signed in, current_user will refer to the signed in user object.
 # if they are not signed in, current_user will be nil
 
+class Post
+	include DataMapper::Resource
+	property :id, Serial
+
+    property :created_at, DateTime
+    
+    property :delivery_location, Text
+    property :order_description, Text
+    property :time_for_order_to_be_completed, Text
+    property :accepted_by, Text #should this be something else??
+    
+    property :post_accepted, Boolean, :default => false
+    property :completed, Boolean, :default => false
+end
+
 get "/" do
 	erb :index
 end
