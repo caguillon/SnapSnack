@@ -35,22 +35,16 @@ end
 
 
 post "/register" do
-	fname = params[:fname]
-	lname = params[:lname]
-	email = params[:email]
-	password = params[:password]
-
 	u = User.new
-	u.fname = fname
-	u.lname = lname
-	u.email = email.downcase
-	u.password =  password
+	u.fname = params[:fname]
+	u.lname = params[:lname]
+	u.email = params[:email].downcase
+	u.password =  params[:password]
 	u.save
 
 	session[:user_id] = u.id
 
 	erb :"authentication/successful_signup"
-
 end
 
 #This method will return the user object of the currently signed in user
