@@ -1,7 +1,7 @@
 require "sinatra"
 require 'sinatra/flash'
 require_relative "authentication.rb"
-require 'stripe'
+require "stripe"
 
 set :publishable_key, 'pk_test_GcpPtLGp2FWGxTcxzZdEd7fm'
 set :secret_key, 'sk_test_NkKAAhxeUkoDfJz9PpCew4jW'
