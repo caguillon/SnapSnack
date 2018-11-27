@@ -8,6 +8,28 @@ set :secret_key, 'sk_test_NkKAAhxeUkoDfJz9PpCew4jW'
 
 Stripe.api_key = settings.secret_key
 
+if ENV['DATABASE_URL']
+	DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+  else
+	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
+  end  
+
+class Order
+	include DataMapper::Resource
+	property :id, Serial
+
+    property :created_at, DateTime
+    
+    property :delivery_location, Text
+    property :order_description, Text
+    property :time_to_be_completed, Text
+    property :accepted_by, Text #should this be something else??
+    
+    property :post_accepted, Boolean, :default => false
+    property :completed, Boolean, :default => false
+end
+
+DataMapper.finalize
 #the following urls are included in authentication.rb
 # GET /login
 # GET /logout
@@ -28,21 +50,6 @@ if User.all(administrator: true).count == 0
 	u.save
 end
 
-class Order
-	include DataMapper::Resource
-	property :id, Serial
-
-    property :created_at, DateTime
-    
-    property :delivery_location, Text
-    property :order_description, Text
-    property :time_for_order_to_be_completed, Text
-    property :accepted_by, Text #should this be something else??
-    
-    property :post_accepted, Boolean, :default => false
-    property :completed, Boolean, :default => false
-end
-
 get "/" do
 	erb :index
 end
@@ -55,6 +62,23 @@ end
 get "/order" do
 	authenticate!
 	erb :orderform
+end
+
+#order table doesnt exist in database
+post "/order/create" do 
+	authenticate!
+	delivery = params["dloc"]
+	order_des = params["odescription"]
+	time_com = params["time"]
+
+	if(delivery != nil && order_des != nil && time_com != nil)
+		o = Order.new
+		o.delivery_location = delivery
+		o.order_description = order_des
+		o.time_to_be_completed = time_com
+		o.save
+		"successfully added new order"
+	end
 end
 
 post "/charge" do
