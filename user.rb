@@ -33,6 +33,6 @@ end
 # Call this when you've defined all your models
 DataMapper.finalize
 
-# automatically create the post table
+# automatically create the user table
 User.auto_upgrade!
 
