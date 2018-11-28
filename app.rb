@@ -108,5 +108,12 @@ end
 # changes the user to also be a delivery
 post "/delivery/new" do 
 	authenticate!
-	upgrade!
+	#optional: if user actually checked that they want to upgrade
+	upgrade = params["upgrade"]
+
+	if upgrade == "on"
+		upgrade!
+		erb :successful_upgrade
+	end
+
 end
