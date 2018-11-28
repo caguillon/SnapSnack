@@ -92,3 +92,21 @@ post "/charge" do
 	)
 	erb :index
   end
+
+# a consumer can become a deliverer and earn profit $ by completing orders
+ get "/upgrade/delivery" do
+	authenticate!
+	#if you are not pro or admin, can upgrade
+	if admin? == false && delivery? == false
+		# FIXME: need to figure out checkmark input to get code to work
+		erb :deliveryform
+	else
+		redirect "/"
+	end
+end
+
+# changes the user to also be a delivery
+post "/delivery/new" do 
+	authenticate!
+	upgrade!
+end

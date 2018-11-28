@@ -64,3 +64,27 @@ def authenticate!
 		redirect "/login"
 	end
 end
+
+#if the user is an admin
+def admin?
+	if !current_user.administrator
+		return false;
+	else
+		return true;
+	end
+end
+
+#if the user is a deliverer
+def delivery?
+	if !current_user.delivery
+		return false;
+	else
+		return true;
+	end
+end
+
+#upgrades the user to a delivery in database
+def upgrade!
+	current_user.update(:delivery => true)
+	current_user.save
+end

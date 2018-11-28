@@ -17,6 +17,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/order">Create a New Order</a>
         </li>
+        <% if admin? == false && delivery? == false %>
+          <li class="nav-item">
+            <a class="nav-link" href="/upgrade/delivery">Become a deliverer!</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
         </li>

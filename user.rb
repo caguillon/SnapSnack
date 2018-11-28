@@ -21,7 +21,7 @@ class User
     
     #type of user - is there a better way for this?
     property :administrator, Boolean, :default => false
-    property :consumer, Boolean, :default => false
+    property :consumer, Boolean, :default => true
     property :delivery, Boolean, :default => false
 
     def login(password)
