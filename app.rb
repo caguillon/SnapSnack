@@ -8,12 +8,6 @@ set :secret_key, 'sk_test_NkKAAhxeUkoDfJz9PpCew4jW'
 
 Stripe.api_key = settings.secret_key
 
-if ENV['DATABASE_URL']
-	DataMapper::setup(:default, ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
-  else
-	DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/app.db")
-  end  
-
 class Order
 	include DataMapper::Resource
 	property :id, Serial
@@ -29,12 +23,10 @@ class Order
     property :completed, Boolean, :default => false
 end
 
-DataMapper.finalize
+# we don't need to include again the datamapper code since it's already in the user.rb
+
+# automatically creates the order table
 Order.auto_upgrade!
-#the following urls are included in authentication.rb
-# GET /login
-# GET /logout
-# GET /sign_up
 
 # authenticate! will make sure that the user is signed in, if they are not they will be redirected to the login page
 # if the user is signed in, current_user will refer to the signed in user object.
@@ -100,3 +92,21 @@ post "/charge" do
 	)
 	erb :index
   end
+
+# a consumer can become a deliverer and earn profit $ by completing orders
+ get "/upgrade/delivery" do
+	authenticate!
+	#if you are not pro or admin, can upgrade
+	if admin? == false && delivery? == false
+		# FIXME: need to figure out checkmark input to get code to work
+		erb :deliveryform
+	else
+		redirect "/"
+	end
+end
+
+# changes the user to also be a delivery
+post "/delivery/new" do 
+	authenticate!
+	upgrade!
+end

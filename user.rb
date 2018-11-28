@@ -21,7 +21,7 @@ class User
     
     #type of user - is there a better way for this?
     property :administrator, Boolean, :default => false
-    property :consumer, Boolean, :default => false
+    property :consumer, Boolean, :default => true
     property :delivery, Boolean, :default => false
 
     def login(password)
@@ -33,6 +33,6 @@ end
 # Call this when you've defined all your models
 DataMapper.finalize
 
-# automatically create the post table
+# automatically create the user table
 User.auto_upgrade!
 
