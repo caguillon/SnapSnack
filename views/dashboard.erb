@@ -2,20 +2,22 @@
 	<h1>Dashboard for <%= current_user.fname %></h1>
 	<div class="row col-md-offset-2" >
 	<% @orders.each do |o| %>
-	<div class="card w-100 mt-3">
-		<div class="card-header">
-			<div class="row">
-				<div class="col-md-11">
-					<h4 id="name"><%= o.user %></h4>
+		<% if o.user == current_user.fname %>
+			<div class="card w-100 mt-3">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-11">
+							<h4 id="name"><%= o.user %></h4>
+						</div>
+					</div>
+				</div>
+
+				<div class="card-body">
+					<p id="com">Order: <%= o.order_description %></p>
+					<p id="date">Time: <%= o.time_to_be_completed %> min</p>
 				</div>
 			</div>
-		</div>
-
-		<div class="card-body">
-			<p id="com">Order: <%= o.order_description %></p>
-			<p id="date">Time: <%= o.time_to_be_completed %> min</p>
-		</div>
-	</div>
+		<% end %>
 	<% end %>
 	</div>
 </div>
