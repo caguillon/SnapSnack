@@ -24,6 +24,11 @@
             <a class="nav-link" href="/upgrade/delivery">Become a deliverer!</a>
           </li>
         <% end %>
+        <% if admin? == false && delivery? == true %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/snapper">Snapper Dashboard</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
         </li>
