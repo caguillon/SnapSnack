@@ -6,9 +6,11 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-      </li>
+      <% if !current_user %>
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+      <% end %>
 
       <% if current_user %>
         <li class="nav-item">
@@ -20,6 +22,11 @@
         <% if admin? == false && delivery? == false %>
           <li class="nav-item">
             <a class="nav-link" href="/upgrade/delivery">Become a deliverer!</a>
+          </li>
+        <% end %>
+        <% if admin? == false && delivery? == true %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/snapper">Snapper Dashboard</a>
           </li>
         <% end %>
         <li class="nav-item">

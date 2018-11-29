@@ -17,7 +17,7 @@ class Order
     property :delivery_location, Text
     property :order_description, Text
     property :time_to_be_completed, Text
-    property :accepted_by, Text #should this be something else??
+    property :accepted_by, Text # the user the will complete the order
     
     property :post_accepted, Boolean, :default => false
     property :completed, Boolean, :default => false
@@ -53,6 +53,12 @@ get "/dashboard" do
 	erb :dashboard
 end
 
+get "/dashboard/snapper" do
+	authenticate!
+	@orders = Order.all(completed: false)
+	erb :dashboard
+end
+
 get "/order" do
 	authenticate!
 	erb :orderform
@@ -69,7 +75,7 @@ post "/order/create" do
 		o.delivery_location = delivery
 		o.order_description = order_des
 		o.time_to_be_completed = time_com
-		o.user = current_user.fname
+		o.user = current_user.email #each email is unique
 		o.save
 	end
 	erb :orderSubmission
@@ -90,7 +96,7 @@ post "/charge" do
 	  :currency    => 'usd',
 	  :customer    => customer.id
 	)
-	erb :index
+	erb :dashboard
   end
 
 # a consumer can become a deliverer and earn profit $ by completing orders
