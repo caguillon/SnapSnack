@@ -56,7 +56,7 @@ end
 get "/dashboard/snapper" do
 	authenticate!
 	@orders = Order.all(completed: false)
-	erb :dashboard
+	erb :snapper_dashboard
 end
 
 get "/order" do
