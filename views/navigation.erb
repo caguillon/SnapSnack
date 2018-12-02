@@ -14,10 +14,7 @@
 
       <% if current_user %>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/order">Create a New Order</a>
+          <a class="nav-link" href="/dashboard">My Dashboard</a>
         </li>
         <% if admin? == false && delivery? == false %>
           <li class="nav-item">
@@ -29,6 +26,9 @@
             <a class="nav-link" href="/dashboard/snapper">Snapper Dashboard</a>
           </li>
         <% end %>
+        <li class="nav-item">
+          <a class="nav-link" href="/order">Create a New Order</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Logout</a>
         </li>
