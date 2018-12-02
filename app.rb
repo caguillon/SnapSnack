@@ -97,7 +97,7 @@ post "/charge" do
 	  :customer    => customer.id
 	)
 	erb :dashboard
-  end
+end
 
 # a consumer can become a deliverer and earn profit $ by completing orders
  get "/upgrade/delivery" do
