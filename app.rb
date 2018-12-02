@@ -123,3 +123,19 @@ post "/delivery/new" do
 	end
 
 end
+
+# snapper accepted an order, so update orders table
+post "/delivery/accepto" do
+	authenticate!
+	oid = params["order"]
+
+	#gets the order from table
+	o = Order.get(oid.to_i)
+
+	#updates info on order
+	o.accepted_by = current_user.email
+    o.post_accepted = true
+    o.save
+    
+	redirect "/dashboard/snapper"
+end
