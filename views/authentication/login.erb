@@ -1,5 +1,18 @@
-<form action="/process_login" method="POST">
-	Email: <input type="text" name="email"><br/>
-	Password: <input type="password" name="password"><br/>
-	<input type="submit" name="" value="Login">
-</form>
+<div id="sign" class="row justify-content-md-center mt-5">
+	<div class="card" style="width: 36rem;">
+  		<div class="card-body">
+			<h5 class="card-title">Sign in!</h5>
+			<form action="/process_login" method="POST">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Email</label>
+				<input type="textbox" class="form-control" name="email" required aria-describedby="emailHelp" placeholder="Email">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Password</label>
+				<input type="password" class="form-control" name="password" required placeholder="Password">
+			</div>
+			<button type="submit" class="btn btn-primary">Login</button>
+			</form>
+		</div>
+	</div>
+</div>

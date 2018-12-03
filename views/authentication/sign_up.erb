@@ -1,8 +1,26 @@
-<form action="register" method="POST">
-	<br/>
-	First Name: <input type="text" name="fname" required><br/>
-	Last Name: <input type="text" name="lname" required><br/>
-	Email: <input type="text" name="email" required><br/>
-	Password: <input type="password" name="password" required><br/><br/>
-	<input type="submit" value="Register">
-</form>
+<div id="sign" class="row justify-content-md-center mt-5">
+	<div class="card" style="width: 36rem;">
+  		<div class="card-body">
+			<h5 class="card-title">Sign Up!</h5>
+			<form action="/register" method="POST">
+			<div class="form-group">
+				<label for="exampleInputEmail1">First Name</label>
+				<input type="textbox" class="form-control" name="fname" required aria-describedby="emailHelp" placeholder="First Name">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Last Name</label>
+				<input type="textbox" class="form-control" name="lname" required aria-describedby="emailHelp" placeholder="Last Name">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail1">Email</label>
+				<input type="textbox" class="form-control" name="email" required aria-describedby="emailHelp" placeholder="Email">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Password</label>
+				<input type="password" class="form-control" name="password" required placeholder="Password">
+			</div>
+			<button type="submit" class="btn btn-primary">Register</button>
+			</form>
+		</div>
+	</div>
+</div>
