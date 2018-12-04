@@ -13,8 +13,25 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<p id="com">Order: <%= o.order_description %></p>
-					<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<table class="table table-bordered">
+					<tbody>
+		  				<tr>
+							<td>
+								<p id="loc"><span style="font-weight:bold;color:#E10580">Location:</span> <%= o.delivery_location %></p>
+							</td>
+		  				</tr>
+		  				<tr>
+							<td>
+								<p id="com"><span style="font-weight:bold;color:#E10580">Order:</span> <%= o.order_description %></p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p id="date"><span style="font-weight:bold;color:#E10580">Time:</span> <%= o.time_to_be_completed %> min</p>
+							</td>
+		  				</tr>
+					</tbody>
+	  			</table>
 				</div>
 			</div>
 		<% end %>
