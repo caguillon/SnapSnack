@@ -177,7 +177,7 @@ post "/charge/:order_id" do
 	  :currency    => 'usd',
 	  :customer    => customer.id
 	)
-	erb :dashboard
+	redirect "/dashboard"
 end
 
 # a consumer can become a deliverer and earn profit $ by completing orders
