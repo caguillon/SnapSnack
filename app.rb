@@ -107,9 +107,9 @@ post "/order/create" do
 	price = 0
 
 	####concatenating string for order####
-	order += "Chik-Fil-A Chicken Sandwhich\n" if chicken_sandwhich
-	order += "Chik-Fil-A Chicken Nuggets\n" if nuggets
-	order += "Chik-Fil-A Breakfast Biscuit\n" if biscuit
+	order += "Chick-Fil-A Chicken Sandwhich\n" if chicken_sandwhich
+	order += "Chick-Fil-A Chicken Nuggets\n" if nuggets
+	order += "Chick-Fil-A Breakfast Biscuit\n" if biscuit
 
 	order += "El Pato Beef Guisado\n" if beef_guisado
 	order += "El Pato Beef/Chicken Fajita\n" if beef_fajita
