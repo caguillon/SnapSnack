@@ -1,0 +1,66 @@
+<h1>Admin Dashboard for <%= current_user.fname %> <%= current_user.lname %></h1>
+
+<h2>Accepted Orders:</h2>
+<% @orders.each do |o| %>
+	<!-- Orders that have been accepted -->
+	<% if o.completed == false && o.post_accepted == true %>
+		<div class="card bg-light mb-3 w-100">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<h4 id="name"><%= o.user %></h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<p id="com">Order: <%= o.order_description %></p>
+				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<h2>Available Orders:</h2>
+<% @orders.each do |o| %>
+	<!-- Orders that are available -->
+	<% if o.completed == false && o.post_accepted == false %>
+		<div class="card text-white bg-warning mb-3 w-100">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<h4 id="name"><%= o.user %></h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<p id="com">Order: <%= o.order_description %></p>
+				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<!-- Snappers can accept an order -->
+				<form method="post" action="/delivery/accepto">
+				    <input type="hidden" name="order" value=<%= o.id.to_s %>>
+				    <input class="btn btn-light" type="submit" value="Accept Order">
+				</form>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<h2>Completed Orders:</h2>
+<% @orders.each do |o| %>
+	<!-- Orders that are available -->
+	<% if o.completed == true %>
+		<div class="card bg-light mb-3 w-100">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<h4 id="name"><%= o.user %></h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<p id="com">Order: <%= o.order_description %></p>
+				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+			</div>
+		</div>
+	<% end %>
+<% end %>

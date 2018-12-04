@@ -65,6 +65,20 @@ def authenticate!
 	end
 end
 
+#if the user is not an admin, will redirect user
+def administrate!
+	if !current_user.administrator
+		redirect "/dashboard"
+	end
+end
+
+#if the user is not a snapper, will redirect user
+def snapify!
+	if !current_user.delivery
+		redirect "/dashboard"
+	end
+end
+
 #if the user is an admin
 def admin?
 	if !current_user.administrator

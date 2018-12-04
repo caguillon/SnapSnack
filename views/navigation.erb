@@ -26,6 +26,11 @@
             <a class="nav-link" href="/dashboard/snapper">Snapper Dashboard</a>
           </li>
         <% end %>
+        <% if admin? == true %>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard/admin">Admin Dashboard</a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" href="/order">Create a New Order</a>
         </li>

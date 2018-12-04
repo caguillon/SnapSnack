@@ -55,8 +55,16 @@ end
 
 get "/dashboard/snapper" do
 	authenticate!
+	snapify!
 	@orders = Order.all
 	erb :snapper_dashboard
+end
+
+get "/dashboard/admin" do
+	authenticate!
+	administrate!
+	@orders = Order.all
+	erb :admin_dashboard
 end
 
 get "/order" do
