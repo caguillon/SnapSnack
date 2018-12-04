@@ -1,7 +1,30 @@
 <h1>Dashboard for <%= current_user.fname %></h1>
+
+<h2>My Orders:</h2>
 <div class="row col-md-offset-2" >
 	<% @orders.each do |o| %>
-		<% if o.user == current_user.email %>
+		<% if o.user == current_user.email && o.completed == false %>
+			<div class="card w-100 mt-2">
+				<div class="card-header">
+					<div class="row">
+						<div class="col-md-11">
+							<h4 id="name"><%= current_user.fname %></h4>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<p id="com">Order: <%= o.order_description %></p>
+					<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<h2>My History:</h2>
+<div class="row col-md-offset-2" >
+	<% @orders.each do |o| %>
+		<% if o.user == current_user.email && o.completed == true %>
 			<div class="card w-100 mt-2">
 				<div class="card-header">
 					<div class="row">
