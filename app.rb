@@ -76,11 +76,77 @@ post "/order/create" do
 	authenticate!
 	delivery = params["dloc"]
 	time_com = params["time"]
+	######checking each checkbox to see if its null#####
+
+	#chickfila#
 	chicken_sandwhich = !params["chicken_sandwhich"].nil?
+	nuggets = !params["nuggets"].nil?
+	biscuit = !params["biscuit"].nil?
+
+	#el pato#
+	beef_guisado = !params["beef_guisado"].nil?
+	beef_fajita = !params["beef_fajita"].nil?
+	gorditas = !params["gorditas"].nil?
+
+	#sushi#
+	firecracker = !params["firecracker"].nil?
+	noodles = !params["noodles"].nil?
+	rice = !params["rice"].nil?
+
+	#pizza hut#
+	pepperoni = !params["pepperoni"].nil?
+	hawaiian = !params["hawaiian"].nil?
+	wings = !params["wings"].nil?
+
+	#drinks#
+	coke = !params["coke"].nil?
+	lem = !params["lemonade"].nil?
+	power = !params["powerade"].nil?
+
 	order = ""
 	price = 0
+
+	####concatenating string for order####
 	order += "Chik-Fil-A Chicken Sandwhich\n" if chicken_sandwhich
-	price += 400 if chicken_sandwhich
+	order += "Chik-Fil-A Chicken Nuggets\n" if nuggets
+	order += "Chik-Fil-A Breakfast Biscuit\n" if biscuit
+
+	order += "El Pato Beef Guisado\n" if beef_guisado
+	order += "El Pato Beef/Chicken Fajita\n" if beef_fajita
+	order += "El Pato Gorditas\n" if gorditas
+
+	order += "Sushi Firecracker\n" if firecracker
+	order += "Sushi Noodles\n" if noodles
+	order += "Sushi Fried Rice\n" if rice
+
+	order += "Pizza Hut Pepperoni 1 slice\n" if pepperoni
+	order += "Pizza Hut Hawaiian\n" if hawaiian
+	order += "Pizza Hut Wings 8pc\n" if wings
+
+	order += "Coke\n" if coke
+	order += "Lemonade\n" if lem
+	order += "Powerade\n" if power
+
+	####adding the total price of everything to charge####
+	price += 421 if chicken_sandwhich
+	price += 519 if nuggets
+	price += 362 if biscuit
+
+	price += 863 if beef_guisado
+	price += 752 if beef_fajita
+	price += 651 if gorditas
+
+	price += 981 if firecracker
+	price += 562 if noodles
+	price += 499 if rice
+
+	price += 495 if pepperoni
+	price += 1499 if hawaiian
+	price += 856 if wings
+
+	price += 255 if coke
+	price += 290 if lem
+	price += 199 if power
 
 	if(delivery != nil && order != nil && time_com != nil)
 		@o = Order.new
