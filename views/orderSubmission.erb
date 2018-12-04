@@ -12,7 +12,7 @@
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
             data-description="A month's subscription"
-            data-amount="500"
+            data-amount="<%= @o.price%>"
             data-locale="auto">
         </script>
 </form>
