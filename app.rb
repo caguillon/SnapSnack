@@ -55,7 +55,7 @@ end
 
 get "/dashboard/snapper" do
 	authenticate!
-	@orders = Order.all(completed: false)
+	@orders = Order.all
 	erb :snapper_dashboard
 end
 
@@ -78,6 +78,7 @@ post "/order/create" do
 		o.user = current_user.email #each email is unique
 		o.save
 	end
+	
 	erb :orderSubmission
 end
 
@@ -104,7 +105,6 @@ end
 	authenticate!
 	#if you are not pro or admin, can upgrade
 	if admin? == false && delivery? == false
-		# FIXME: need to figure out checkmark input to get code to work
 		erb :deliveryform
 	else
 		redirect "/"
@@ -131,10 +131,25 @@ post "/delivery/accepto" do
 
 	#gets the order from table
 	o = Order.get(oid.to_i)
-
+	
 	#updates info on order
 	o.accepted_by = current_user.email
     o.post_accepted = true
+    o.save
+    
+	redirect "/dashboard/snapper"
+end
+
+# snapper accepted an order, so update orders table
+post "/delivery/completeo" do
+	authenticate!
+	oid = params["complete"]
+	
+	#gets the order from table
+	o = Order.get(oid.to_i)
+	
+	#updates info on order
+	o.completed = true
     o.save
     
 	redirect "/dashboard/snapper"

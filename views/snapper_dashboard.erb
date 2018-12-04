@@ -1,8 +1,35 @@
 <h1>Snapper Dashboard for <%= current_user.fname %></h1>
+
+<h2>Accepted Orders:</h2>
+<% @orders.each do |o| %>
+	<!-- Orders that have been accepted by current snapper -->
+	<% if o.completed == false && o.post_accepted == true && o.accepted_by == current_user.email %>
+		<div class="card bg-light mb-3 w-100">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-11">
+						<h4 id="name"><%= o.user %></h4>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<p id="com">Order: <%= o.order_description %></p>
+				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<!-- Snappers complete an order -->
+				<form method="post" action="/delivery/completeo">
+				    <input type="hidden" name="complete" value=<%= o.id.to_s %>>
+				    <input class="btn btn-success" type="submit" value="Order Complete">
+				</form>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<h2>Available Orders:</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
-		<div class="card text-white bg-primary mb-3 w-100">
+		<div class="card text-white bg-warning mb-3 w-100">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-md-11">
@@ -21,10 +48,13 @@
 			</div>
 		</div>
 	<% end %>
+<% end %>
 
-	<!-- Orders that have been accepted -->
-	<% if o.completed == false && o.post_accepted == true %>
-		<div class="card text-white bg-secondary mb-3 w-100">
+<h2>Completed Orders:</h2>
+<% @orders.each do |o| %>
+	<!-- Orders that are available -->
+	<% if o.completed == true && o.accepted_by == current_user.email %>
+		<div class="card bg-light mb-3 w-100">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-md-11">
