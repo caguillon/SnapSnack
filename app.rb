@@ -18,7 +18,7 @@ class Order
     property :order_description, Text
     property :time_to_be_completed, Text
     property :accepted_by, Text # the user the will complete the order
-    
+    property :price, Integer
     property :post_accepted, Boolean, :default => false
     property :completed, Boolean, :default => false
 end
@@ -75,24 +75,30 @@ end
 post "/order/create" do 
 	authenticate!
 	delivery = params["dloc"]
-	order_des = params["odescription"]
 	time_com = params["time"]
+	chicken_sandwhich = !params["chicken_sandwhich"].nil?
+	order = ""
+	price = 0
+	order += "Chik-Fil-A Chicken Sandwhich\n" if chicken_sandwhich
+	price += 400 if chicken_sandwhich
 
-	if(delivery != nil && order_des != nil && time_com != nil)
-		o = Order.new
-		o.delivery_location = delivery
-		o.order_description = order_des
-		o.time_to_be_completed = time_com
-		o.user = current_user.email #each email is unique
-		o.save
+	if(delivery != nil && order != nil && time_com != nil)
+		@o = Order.new
+		@o.delivery_location = delivery
+		@o.order_description = order
+		@o.price = price
+		@o.time_to_be_completed = time_com
+		@o.user = current_user.email #each email is unique
+		@o.save
 	end
 	
 	erb :orderSubmission
 end
 
-post "/charge" do
+post "/charge/:order_id" do
 	# Amount in cents
-	@amount = 500
+	order = Order.get(params[:order_id])
+	@amount = order.price
   
 	customer = Stripe::Customer.create(
 	  :email => 'customer@example.com',
