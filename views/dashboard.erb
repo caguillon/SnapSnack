@@ -1,6 +1,27 @@
-<h1>Dashboard for <%= current_user.fname %></h1>
+<br/>
+<div class="jumbotron" style="background-color:#E10580">
+  <div class="container">
+    <h1 class="display-3" style="color:white">Welcome back Snacker <%= current_user.fname %>!</h1>
+    <p style="color:white"><p>
+  </div>
+</div>
 
-<h2>My Orders:</h2>
+<div class="container">
+	<div class="row">
+    	<div class="col-md-4">
+    		<h2 class="display-3" style="font-size: 25px; color:#41369F">New Order?</h2>
+    		<p>To create a new order, click on "Snack" on your dashboard navigation bar. Snack will guide you to a order form.</p>
+		</div>
+
+    	<div class="col-md-4">
+    		<h2 class="display-3" style="font-size: 25px; color:#41369F">New Delivery?</h2>
+    		<p>To accept an order and deliver, click on "Snap" on your dashboard navigation bar. Snap will guide you to a order form.</p>
+		</div>
+	</div>
+</div>
+
+
+<h2 style="font-size: 45px; color:#41369F">My Orders</h2><br/>
 <div class="row col-md-offset-2" >
 	<% @orders.each do |o| %>
 		<% if o.user == current_user.email && o.completed == false %>
@@ -21,7 +42,9 @@
 	<% end %>
 </div>
 
-<h2>My History:</h2>
+<br/>
+<h2 style="font-size: 45px; color:#41369F">My History</h2>
+<br/>
 <div class="row col-md-offset-2" >
 	<% @orders.each do |o| %>
 		<% if o.user == current_user.email && o.completed == true %>
@@ -41,3 +64,4 @@
 		<% end %>
 	<% end %>
 </div>
+<br/><hr>
