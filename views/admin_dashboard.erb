@@ -35,11 +35,6 @@
 			<div class="card-body">
 				<p id="com">Order: <%= o.order_description %></p>
 				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
-				<!-- Snappers can accept an order -->
-				<form method="post" action="/delivery/accepto">
-				    <input type="hidden" name="order" value=<%= o.id.to_s %>>
-				    <input class="btn btn-light" type="submit" value="Accept Order">
-				</form>
 			</div>
 		</div>
 	<% end %>
