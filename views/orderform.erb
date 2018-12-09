@@ -1,40 +1,58 @@
 <div id="form" class="row justify-content-md-center mt-5">
-	<div class="card" style="width: 36rem;">
+	<div class="card" style="border-color:#E10580; border-width: .2rem; width: 36rem;">
 	  <div class="card-body">
-  	  <h5 class="card-title">Place your order</h5>
+	  	<center>
+	  	<img src="https://www.pngarts.com/files/2/Order-PNG-Background-Image.png" width="200" height="200">
+  	  <h5 class="card-title" style="font-size: 35px; color:#41369F">Place your order</h5>
+  		</center><br/>
 		<form action="/order/create" method="POST">
 			<div class="form-group">
-				<label for="deliver">Delivery Location</label>
+				<label for="deliver" style="color:#41369F"><b>Delivery Location</b></label>
 		    	<input type="textbox" class="form-control" name="dloc" aria-describedby="emailHelp" placeholder="Delivery">
 			</div>
 			<div class="form-group">
-				<label for="order">Order</label><br>
+				<label for="order" style="color:#41369F"><b>Order</b></label><br>
 				<table class="table table-bordered">
 		<tbody>
 		  <tr>
-			<td><p> Chick-fil-a </p>
+			<td>
+				<center>
+				<img src="https://pngimage.net/wp-content/uploads/2018/05/chick-fil-a-logo-png-1.png" width="100" height="125">
+				</center><br/>
 				<input type="checkbox" name="chicken_sandwhich" value="421">Chicken Sandwich<br>
 			  	<input type="checkbox" name="nuggets" value="519">Chicken Nuggets 8pc<br>
 				<input type="checkbox" name="biscuit" value="362">Chicken Biscuit<br><br>
 			</td>
-			<td><p> El Pato </p>
+			<td>
+				<center><br/>
+				<img src="https://elpatomexicanfood.com/wp-content/uploads/2018/09/Pato-web-Logo-250.jpg" width="160" height="100">
+				</center><br/>
 				<input type="checkbox" name="beef_guisado" value="863">Beef Guisado Pato<br>
 			  	<input type="checkbox" name="beef_fajita" value="752">Beef/Chicken Fajita Pato<br>
 			  	<input type="checkbox" name="gorditas" value="651">Gorditas<br><br>
 			</td>
 		  </tr>
 		  <tr>
-			<td><p> Sushi </p>
+			<td>
+				<center><br/>
+				<img src="https://www.logolynx.com/images/logolynx/da/dae6154ed121bb06cd35108f2678976d.jpeg" width="150" height="50">
+				</center><br/><br/>
 				<input type="checkbox" name="firecracker" value="981">Firecracker Roll<br>
 			  	<input type="checkbox" name="noodles" value="562">Noodles<br>
 			  	<input type="checkbox" name="rice" value="499">Fried Rice<br><br>
 			</td>
-			<td><p> Pizza Hut </p>
+			<td>
+				<center>
+	  			<img src="https://upload.wikimedia.org/wikipedia/sco/thumb/d/d2/Pizza_Hut_logo.svg/1088px-Pizza_Hut_logo.svg.png" width="100" height="100">
+  				</center><br/>
 				<input type="checkbox" name="pepperoni" value="495">Pepperoni 1 slice<br>
 			  	<input type="checkbox" name="hawaiian" value="1499">Hawaiian<br>
 			  	<input type="checkbox" name="wings" value="856">Wings 8pc<br><br>
 			</td>
-			<td><p> Drinks </p>
+			<td>
+				<center>
+	  			<img src="http://icons.iconarchive.com/icons/graphicloads/food-drink/256/colddrink-icon.png" width="100" height="100">
+  				</center><br/>
 					<input type="checkbox" name="coke" value="225">Coke<br>
 			  	<input type="checkbox" name="lemonade" value="290">Lemonade<br>
 			  	<input type="checkbox" name="powerade" value="199">Powerade<br><br>
@@ -44,11 +62,12 @@
 	  </table>
 			</div>
 			<div class="form-group">
-				<label for="time">When do you want it?</label>
+				<label for="time" style="color:#41369F"><b>When do you want it?</b></label>
 		    	<input type="textbox" class="form-control" name="time" aria-describedby="emailHelp" placeholder="min">
 			</div>
-			<input type="submit" value="Submit">
+			<button type="submit" value="Submit" class="btn btn-primary" style="background-color:#41369F">Submit</button>
 		</form>
   		</div>
 	</div>
 </div>
+<br/><hr>

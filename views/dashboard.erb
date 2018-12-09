@@ -12,7 +12,7 @@
     	<div class="col-md-4">
     		<center>
     		<h2 class="display-2" style="font-size: 25px; color:#41369F"><b>Snack Order</b></h2>
-    		<p style="font-size: 15px">To create a new order, click on "Snack" on your dashboard navigation bar. Snack will guide you to a order form.</p>
+    		<p style="font-size: 15px">To create a new order, click on "Snack" on your dashboard navigation bar. Snack will guide you to an order form to begin creating an order task.</p>
     		</center>
 		</div>
 
@@ -25,7 +25,7 @@
     	<div class="col-md-4">
     		<center>
     		<h2 class="display-2" style="font-size: 25px; color:#41369F"><b>Snap Deliver</b></h2>
-    		<p style="font-size: 15px">To accept an order and deliver, click on "Snap" on your dashboard navigation bar. Snap will guide you to a order form.</p>
+    		<p style="font-size: 15px">Since you are currently not a Snapper, if you would like to start accepting orders and deliver, click on "Snap" on your dashboard navigation bar. Snap will guide you to a "Become a Snapper!" request form.</p>
     		</center>
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 	<% @orders.each do |o| %>
 		<% if o.user == current_user.email && o.completed == false %>
 			<div class="card w-100 mt-2" style="border-color:#E10580; border-width: .2rem">
-				<div class="card-header" style="background-color:#FEE186">
+				<div class="card-header" style="background-color:#D7D8E5">
 					<div class="row">
 						<div class="col-md-11">
 							<h4 id="name" style="color:#41369F"><%= current_user.fname %></h4>
