@@ -18,7 +18,7 @@
 				<!-- Snappers complete an order -->
 				<form method="post" action="/delivery/completeo">
 				    <input type="hidden" name="complete" value=<%= o.id.to_s %>>
-				    <input class="btn btn-success" type="submit" value="Order Complete">
+				    <input class="btn btn-danger" type="submit" value="Order Complete">
 				</form>
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
-		<div class="card text-white bg-warning mb-3 w-100">
+		<div class="card text-white bg-primary mb-3 w-100">
 			<div class="card-header">
 				<div class="row">
 					<div class="col-md-11">
