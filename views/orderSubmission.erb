@@ -1,13 +1,19 @@
-<h3> Your order is almost complete! Just pay! </h3>
+<br/>
+<h3 style="color:#E10580"> Your order is almost complete! Review your order and pay!</h3>
+<br/>
 <form action="/charge/<%= @o.id %>" method="post" class="payment">
-    <p>
-        <%= @o.order_description %>
-    </p>
+    <h2 style="color:#41369F"><b>Order Summary</b></h2>
+    <hr>
+        <p>
+            <%= @o.order_description %>
+        </p>
+    
     <article>
       <label class="amount">
-        <span>Amount: $<%= @o.price / 100.0 %></span>
+        <span><b><span style="color:#E10580">Amount Total: </span></b>$<%= @o.price / 100.0 %></span>
       </label>
     </article>
+    <br/>
 
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
@@ -16,3 +22,4 @@
             data-locale="auto">
         </script>
 </form>
+<br/><hr>
