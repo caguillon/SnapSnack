@@ -10,7 +10,7 @@
     
     <article>
       <label class="amount">
-        <span><b><span style="color:#E10580">Amount Total: </span></b>$<%= @o.price / 100.0 %></span>
+        <span><b><span style="color:#E10580">Amount Total: </span></b>$<%= (@o.price / 100.0).round(2) %></span>
       </label>
     </article>
     <br/>
