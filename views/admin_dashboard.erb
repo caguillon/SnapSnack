@@ -1,11 +1,21 @@
-<h1>Admin Dashboard for <%= current_user.fname %> <%= current_user.lname %></h1>
+<!--AdminDash-->
+<br/>
+<div class="jumbotron" style="background-color:#FFC814">
+  <div class="container">
+  	<center>
+  		<img src="https://www.logolynx.com/images/logolynx/8d/8d290c17727e40cd24296dd3c87d59d0.png" width="200" height="200">
+  	</center>
 
-<h2>Accepted Orders:</h2>
+    <h1 class="display-3" style="color:white">Welcome back to your Administrator Dashboard!</h1>
+  </div>
+</div>
+
+<h2 style="color:#41369F">Accepted Orders</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that have been accepted -->
 	<% if o.completed == false && o.post_accepted == true %>
 		<div class="card bg-light mb-3 w-100">
-			<div class="card-header">
+			<div class="card-header" style="color:#E10580; background-color:#D7D8E5">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -13,19 +23,20 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>
 
-<h2>Available Orders:</h2>
+<h2 style="color:#41369F">Available Orders:</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
-		<div class="card text-white bg-warning mb-3 w-100">
-			<div class="card-header">
+		<div class="card bg-light mb-3 w-100">
+			<div class="card-header" style="color:#E10580; background-color:#D7D8E5">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -33,24 +44,20 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
-				<!-- Snappers can accept an order -->
-				<form method="post" action="/delivery/accepto">
-				    <input type="hidden" name="order" value=<%= o.id.to_s %>>
-				    <input class="btn btn-light" type="submit" value="Accept Order">
-				</form>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>
 
-<h2>Completed Orders:</h2>
+<h2 style="color:#41369F">Completed Orders:</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == true %>
 		<div class="card bg-light mb-3 w-100">
-			<div class="card-header">
+			<div class="card-header" style="color:#E10580; background-color:#D7D8E5">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -58,9 +65,10 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>

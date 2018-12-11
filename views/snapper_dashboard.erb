@@ -1,11 +1,17 @@
-<h1>Snapper Dashboard for <%= current_user.fname %></h1>
+<!--SnapDash-->
+<br/>
+<div class="jumbotron" style="background-color:#FFC814">
+  <div class="container">
+    <h1 class="display-3" style="color:white">Welcome back Snapper <%= current_user.fname %>!</h1>
+  </div>
+</div>
 
-<h2>Accepted Orders:</h2>
+<h2 style="color:#41369F">Accepted Orders</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that have been accepted by current snapper -->
 	<% if o.completed == false && o.post_accepted == true && o.accepted_by == current_user.email %>
 		<div class="card bg-light mb-3 w-100">
-			<div class="card-header">
+			<div class="card-header" style="color:#E10580; background-color:#D7D8E5">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -13,24 +19,25 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 				<!-- Snappers complete an order -->
 				<form method="post" action="/delivery/completeo">
 				    <input type="hidden" name="complete" value=<%= o.id.to_s %>>
-				    <input class="btn btn-success" type="submit" value="Order Complete">
+				    <input class="btn btn-danger" type="submit" value="Order Complete" style="background-color:#41369F">
 				</form>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>
 
-<h2>Available Orders:</h2>
+<h2 style="color:#41369F">Available Orders</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
-		<div class="card text-white bg-warning mb-3 w-100">
-			<div class="card-header">
+		<div class="card w-100 mt-2">
+			<div class="card-header" style="color:#E10580; background-color:#D7D8E5">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -38,24 +45,25 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 				<!-- Snappers can accept an order -->
 				<form method="post" action="/delivery/accepto">
 				    <input type="hidden" name="order" value=<%= o.id.to_s %>>
-				    <input class="btn btn-light" type="submit" value="Accept Order">
+				    <input class="btn btn-light" type="submit" value="Accept Order" style="background-color:#FFC814; color:white">
 				</form>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>
 
-<h2>Completed Orders:</h2>
+<h2 style="color:#41369F">Completed Orders</h2>
 <% @orders.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == true && o.accepted_by == current_user.email %>
 		<div class="card bg-light mb-3 w-100">
-			<div class="card-header">
+			<div class="card-header" style="background-color:#D7D8E5; color:#E10580">
 				<div class="row">
 					<div class="col-md-11">
 						<h4 id="name"><%= o.user %></h4>
@@ -63,9 +71,10 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<p id="com">Order: <%= o.order_description %></p>
-				<p id="date">Time: <%= o.time_to_be_completed %> min</p>
+				<p id="com"><span style="color:#E10580"><b>Order: </b></span><%= o.order_description %></p>
+				<p id="date"><span style="color:#E10580"><b>Time: </b></span><%= o.time_to_be_completed %> min</p>
 			</div>
 		</div>
 	<% end %>
 <% end %>
+<br/><hr>

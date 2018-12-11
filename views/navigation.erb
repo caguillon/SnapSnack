@@ -14,7 +14,7 @@
 
       <% if current_user %>
         <li class="nav-item">
-          <a class="nav-link" href="/dashboard">MyDashboard</a>
+          <a class="nav-link" href="/dashboard">SnackDash</a>
         </li>
         <% if admin? == false && delivery? == false %>
           <li class="nav-item">
@@ -23,12 +23,12 @@
         <% end %>
         <% if admin? == false && delivery? == true %>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard/snapper">Snapper Dashboard</a>
+            <a class="nav-link" href="/dashboard/snapper">SnapDash</a>
           </li>
         <% end %>
         <% if admin? == true %>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard/admin">Admin Dashboard</a>
+            <a class="nav-link" href="/dashboard/admin">AdminDash</a>
           </li>
         <% end %>
         <li class="nav-item">
