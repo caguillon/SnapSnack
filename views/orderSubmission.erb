@@ -4,13 +4,32 @@
 <form action="/charge/<%= @o.id %>" method="post" class="payment">
     <h2 style="color:#41369F"><b>Order Summary</b></h2>
     <hr>
-        <p>
-            <%= @o.order_description %>
-        </p>
-    
+    <table class="table table-bordered" style="width:auto; height:auto">
+    <tbody>
+    <% @arr.each do |a| %>
+          <tr>
+            <td>
+                <p> 
+                    <%= a.order_description %> 
+                </p>
+            </td>
+            <td>
+                <p> 
+                    $<%= (a.price / 100.0)%>
+                </p>
+            </td>
+          </tr>
+          <% end %>
+    </tbody>
+  </table>
+                      
     <article>
       <label class="amount">
-        <span><b><span style="color:#E10580">Amount Total: </span></b>$<%= (@o.price / 100.0).round(2) %></span>
+        <p><span><b><span style="color:#E10580">Order Total: </span></b>$<%= '%.2f' % (@o.price / 100.00) %></span></p>
+        <p><span><b><span style="color:#E10580">Tax: </span></b>$<%= '%.2f' % ((@o.price/ 100.00)* 0.0825) %></span></p>
+        <p><span><b><span style="color:#E10580">Service Fee: </span></b>$<%= '%.2f' % ((@o.price/ 100.00)* 0.10) %></span></p>
+        <p><span><b><span style="color:#E10580">Delivery Fee: </span></b>$5.00</span><p>
+        <p><span><b><span style="color:#E10580">GRAND TOTAL: </span></b>$<%= '%.2f' % (@o.grand_total / 100.0) %></span></p>
       </label>
     </article>
     <br/>
@@ -18,7 +37,7 @@
     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
             data-key="<%= settings.publishable_key %>"
             data-description="Order Total"
-            data-amount="<%= @o.price%>"
+            data-amount="<%= @o.grand_total%>"
             data-locale="auto">
         </script>
 </form>

@@ -43,6 +43,7 @@
 					<div class="row">
 						<div class="col-md-11">
 							<h4 id="name" style="color:#41369F"><%= current_user.fname %></h4>
+							<div style="foat: right"><%= o.created_at %></div>
 						</div>
 					</div>
 				</div>
@@ -57,6 +58,7 @@
 		  				<tr>
 							<td>
 								<p id="com"><span style="font-weight:bold;color:#E10580">Order:</span> <%= o.order_description %></p>
+								<p><span style="color:#41369F"> Grand Total: </span><%= '%.2f' % ((o.price/ 100.00)+((o.price/ 100.00)* 0.0825)) %></p>
 							</td>
 						</tr>
 						<tr>
@@ -97,6 +99,7 @@
 					  <tr>
 						<td>
 							<p id="com"><span style="font-weight:bold;color:#E10580">Order:</span> <%= o.order_description %></p>
+							<p> Grand Total: <%= '%.2f' % ((@o.price/ 100.00)* 0.0825) %></p>
 						</td>
 					</tr>
 					<tr>

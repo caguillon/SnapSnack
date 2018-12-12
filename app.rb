@@ -18,9 +18,11 @@ class Order
     property :order_description, Text
     property :time_to_be_completed, Text
     property :accepted_by, Text # the user the will complete the order
-    property :price, Integer
+	property :price, Integer
+	property :grand_total, Integer
     property :post_accepted, Boolean, :default => false
-    property :completed, Boolean, :default => false
+	property :completed, Boolean, :default => false
+
 end
 
 # we don't need to include again the datamapper code since it's already in the user.rb
@@ -105,54 +107,107 @@ post "/order/create" do
 
 	order = ""
 	price = 0
-
-	####concatenating string for order####
-	order += "Chick-Fil-A Chicken Sandwhich\n" if chicken_sandwhich
-	order += "Chick-Fil-A Chicken Nuggets\n" if nuggets
-	order += "Chick-Fil-A Breakfast Biscuit\n" if biscuit
-
-	order += "El Pato Beef Guisado\n" if beef_guisado
-	order += "El Pato Beef/Chicken Fajita\n" if beef_fajita
-	order += "El Pato Gorditas\n" if gorditas
-
-	order += "Sushi Firecracker\n" if firecracker
-	order += "Sushi Noodles\n" if noodles
-	order += "Sushi Fried Rice\n" if rice
-
-	order += "Pizza Hut Pepperoni 1 slice\n" if pepperoni
-	order += "Pizza Hut Hawaiian\n" if hawaiian
-	order += "Pizza Hut Wings 8pc\n" if wings
-
-	order += "Coke\n" if coke
-	order += "Lemonade\n" if lem
-	order += "Powerade\n" if power
-
-	####adding the total price of everything to charge####
-	price += 421 if chicken_sandwhich
-	price += 519 if nuggets
-	price += 362 if biscuit
-
-	price += 863 if beef_guisado
-	price += 752 if beef_fajita
-	price += 651 if gorditas
-
-	price += 981 if firecracker
-	price += 562 if noodles
-	price += 499 if rice
-
-	price += 495 if pepperoni
-	price += 1499 if hawaiian
-	price += 856 if wings
-
-	price += 255 if coke
-	price += 290 if lem
-	price += 199 if power
-
+	@arr = []
+	if chicken_sandwhich
+		@food = Order.new
+		@food.order_description = "Chick-Fil-A Chicken Sandwhich\n"
+		@food.price = 421
+		@arr.push @food
+	end
+	if nuggets
+		@food = Order.new
+		@food.order_description= "Chick-Fil-A Chicken Nuggets\n"
+		@food.price = 519
+		@arr.push @food
+	end
+	if biscuit
+		@food = Order.new
+		@food.order_description = "Chick-Fil-A Breakfast Biscuit\n"
+		@food.price = 362
+		@arr.push @food
+	end
+	if beef_guisado
+		@food = Order.new
+		@food.order_description= "El Pato Beef Guisado\n"
+		@food.price = 863
+		@arr.push @food
+	end
+	if beef_fajita
+		@food = Order.new
+		@food.order_description = "El Pato Beef Fajita\n"
+		@food.price = 751
+		@arr.push @food
+	end
+	if gorditas
+		@food = Order.new
+		@food.order_description= "El Pato Gorditas\n"
+		@food.price = 499
+		@arr.push @food
+	end
+	if firecracker
+		@food = Order.new
+		@food.order_description = "Sushi Firecracker Roll\n"
+		@food.price = 899
+		@arr.push @food
+	end
+	if noodles
+		@food = Order.new
+		@food.order_description= "Sushi Lo-Mein Noodles\n"
+		@food.price = 556
+		@arr.push @food
+	end
+	if rice
+		@food = Order.new
+		@food.order_description = "Sushi Fried Rice\n"
+		@food.price = 395
+		@arr.push @food
+	end
+	if pepperoni
+		@food = Order.new
+		@food.order_description= "Pizza Hut Pepperoni 1 slice\n"
+		@food.price = 299
+		@arr.push @food
+	end
+	if hawaiian
+		@food = Order.new
+		@food.order_description = "Pizza Hut Hawaiian Large\n"
+		@food.price = 799
+		@arr.push @food
+	end
+	if wings
+		@food = Order.new
+		@food.order_description= "Pizza Hut Wings 8pc\n"
+		@food.price = 954
+		@arr.push @food
+	end
+	if coke
+		@food = Order.new
+		@food.order_description= "Coke\n"
+		@food.price = 225
+		@arr.push @food
+	end
+	if lem
+		@food = Order.new
+		@food.order_description= "Lemonade\n"
+		@food.price = 299
+		@arr.push @food
+	end
+	if power
+		@food = Order.new
+		@food.order_description= "Powerade\n"
+		@food.price = 159
+		@arr.push @food
+	end
+	@arr.each do |a|
+		order += a.order_description
+		price += a.price
+	end
 	if(delivery != nil && order != nil && time_com != nil)
 		@o = Order.new
 		@o.delivery_location = delivery
 		@o.order_description = order
 		@o.price = price
+		@o.grand_total = price + (price * 0.10) + 500 + (price * 0.0825) #$order + $service charge + $delivery fee + $tax fee
 		@o.time_to_be_completed = time_com
 		@o.user = current_user.email #each email is unique
 		@o.save
@@ -164,7 +219,7 @@ end
 post "/charge/:order_id" do
 	# Amount in cents
 	order = Order.get(params[:order_id])
-	@amount = order.price
+	@amount = order.grand_total
   
 	customer = Stripe::Customer.create(
 	  :email => 'customer@example.com',
@@ -220,7 +275,7 @@ post "/delivery/accepto" do
 	redirect "/dashboard/snapper"
 end
 
-# snapper accepted an order, so update orders table
+# snapper complete an order, so update orders table
 post "/delivery/completeo" do
 	authenticate!
 	oid = params["complete"]
