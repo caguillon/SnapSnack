@@ -33,7 +33,7 @@
 <br/><hr>
 
 <h2 style="color:#41369F">Available Orders</h2>
-<% @orders.each do |o| %>
+<% @rev.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
 		<div class="card w-100 mt-2">

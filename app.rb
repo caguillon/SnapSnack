@@ -52,6 +52,7 @@ end
 get "/dashboard" do
 	authenticate!
 	@orders = Order.all
+	@rev = @orders.sort_by{ |h| h[:id] }.reverse! #ordering by most recent snack request
 	erb :dashboard
 end
 
@@ -59,6 +60,7 @@ get "/dashboard/snapper" do
 	authenticate!
 	snapify!
 	@orders = Order.all
+	@rev = @orders.sort_by{ |h| h[:time_to_be_completed] } #ordering by the time to be completed on snapper dashboard
 	erb :snapper_dashboard
 end
 
