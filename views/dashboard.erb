@@ -78,7 +78,7 @@
 <h2 style="font-size: 45px; color:#41369F">My History</h2>
 <br/>
 <div class="row col-md-offset-2" >
-	<% @orders.each do |o| %>
+	<% @rev.each do |o| %>
 		<% if o.user == current_user.email && o.completed == true %>
 			<div class="card w-100 mt-2">
 				<div class="card-header">

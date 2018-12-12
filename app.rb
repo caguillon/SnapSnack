@@ -13,6 +13,7 @@ class Order
 	property :id, Serial
 
 	property :created_at, DateTime
+	property :completed_on, Text
     property :user, String #the user that is posting the task
     property :delivery_location, Text
     property :order_description, Text
@@ -287,6 +288,7 @@ post "/delivery/completeo" do
 
 	#updates info on order
 	o.completed = true
+	o.completed_on = DateTime.now.strftime("%d/%m/%Y %H:%M %p")
     o.save
 	
 	redirect "/dashboard/snapper"
