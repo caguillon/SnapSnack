@@ -12,7 +12,7 @@ class Order
 	include DataMapper::Resource
 	property :id, Serial
 
-    property :created_at, DateTime
+	property :created_at, DateTime
     property :user, String #the user that is posting the task
     property :delivery_location, Text
     property :order_description, Text
@@ -110,96 +110,96 @@ post "/order/create" do
 	@arr = []
 	if chicken_sandwhich
 		@food = Order.new
-		@food.order_description = "Chick-Fil-A Chicken Sandwhich\n"
+		@food.order_description = "Chick-Fil-A Chicken Sandwhich"
 		@food.price = 421
 		@arr.push @food
 	end
 	if nuggets
 		@food = Order.new
-		@food.order_description= "Chick-Fil-A Chicken Nuggets\n"
+		@food.order_description= "Chick-Fil-A Chicken Nuggets"
 		@food.price = 519
 		@arr.push @food
 	end
 	if biscuit
 		@food = Order.new
-		@food.order_description = "Chick-Fil-A Breakfast Biscuit\n"
+		@food.order_description = "Chick-Fil-A Breakfast Biscuit"
 		@food.price = 362
 		@arr.push @food
 	end
 	if beef_guisado
 		@food = Order.new
-		@food.order_description= "El Pato Beef Guisado\n"
+		@food.order_description= "El Pato Beef Guisado"
 		@food.price = 863
 		@arr.push @food
 	end
 	if beef_fajita
 		@food = Order.new
-		@food.order_description = "El Pato Beef Fajita\n"
+		@food.order_description = "El Pato Beef Fajita"
 		@food.price = 751
 		@arr.push @food
 	end
 	if gorditas
 		@food = Order.new
-		@food.order_description= "El Pato Gorditas\n"
+		@food.order_description= "El Pato Gorditas"
 		@food.price = 499
 		@arr.push @food
 	end
 	if firecracker
 		@food = Order.new
-		@food.order_description = "Sushi Firecracker Roll\n"
+		@food.order_description = "Sushi Firecracker Roll"
 		@food.price = 899
 		@arr.push @food
 	end
 	if noodles
 		@food = Order.new
-		@food.order_description= "Sushi Lo-Mein Noodles\n"
+		@food.order_description= "Sushi Lo-Mein Noodles"
 		@food.price = 556
 		@arr.push @food
 	end
 	if rice
 		@food = Order.new
-		@food.order_description = "Sushi Fried Rice\n"
+		@food.order_description = "Sushi Fried Rice"
 		@food.price = 395
 		@arr.push @food
 	end
 	if pepperoni
 		@food = Order.new
-		@food.order_description= "Pizza Hut Pepperoni 1 slice\n"
+		@food.order_description= "Pizza Hut Pepperoni 1 slice"
 		@food.price = 299
 		@arr.push @food
 	end
 	if hawaiian
 		@food = Order.new
-		@food.order_description = "Pizza Hut Hawaiian Large\n"
+		@food.order_description = "Pizza Hut Hawaiian Large"
 		@food.price = 799
 		@arr.push @food
 	end
 	if wings
 		@food = Order.new
-		@food.order_description= "Pizza Hut Wings 8pc\n"
+		@food.order_description= "Pizza Hut Wings 8pc"
 		@food.price = 954
 		@arr.push @food
 	end
 	if coke
 		@food = Order.new
-		@food.order_description= "Coke\n"
+		@food.order_description= "Coke"
 		@food.price = 225
 		@arr.push @food
 	end
 	if lem
 		@food = Order.new
-		@food.order_description= "Lemonade\n"
+		@food.order_description= "Lemonade"
 		@food.price = 299
 		@arr.push @food
 	end
 	if power
 		@food = Order.new
-		@food.order_description= "Powerade\n"
+		@food.order_description= "Powerade"
 		@food.price = 159
 		@arr.push @food
 	end
 	@arr.each do |a|
-		order += a.order_description
+		order += a.order_description + ', '
 		price += a.price
 	end
 	if(delivery != nil && order != nil && time_com != nil)
@@ -282,10 +282,10 @@ post "/delivery/completeo" do
 	
 	#gets the order from table
 	o = Order.get(oid.to_i)
-	
+
 	#updates info on order
 	o.completed = true
     o.save
-    
+	
 	redirect "/dashboard/snapper"
 end

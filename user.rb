@@ -18,6 +18,7 @@ class User
     property :created_at, DateTime
     property :fname, String
     property :lname, String
+    property :deliveries_completed, Integer, :default => 0
     
     #type of user - is there a better way for this?
     property :administrator, Boolean, :default => false

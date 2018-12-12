@@ -41,9 +41,9 @@
 			<div class="card w-100 mt-2" style="border-color:#E10580; border-width: .2rem">
 				<div class="card-header" style="background-color:#D7D8E5">
 					<div class="row">
-						<div class="col-md-11">
-							<h4 id="name" style="color:#41369F"><%= current_user.fname %></h4>
-							<div style="foat: right"><%= o.created_at %></div>
+						<div class="col-md-12">
+							<h4 id="name" style="color:#41369F"><%= current_user.fname %><span style="float: right"><%= o.created_at.strftime("%F %T")%>
+							<button type="button" class="btn btn-primary btn-sm">Cancel</button></span></h4>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,6 @@
 		  				<tr>
 							<td>
 								<p id="com"><span style="font-weight:bold;color:#E10580">Order:</span> <%= o.order_description %></p>
-								<p><span style="color:#41369F"> Grand Total: </span><%= '%.2f' % ((o.price/ 100.00)+((o.price/ 100.00)* 0.0825)) %></p>
 							</td>
 						</tr>
 						<tr>
@@ -67,7 +66,8 @@
 							</td>
 		  				</tr>
 					</tbody>
-	  			</table>
+				  </table>
+				  <h4 style="float: right"><span style="color:#41369F"> Amount Due:</span> $<%= '%.2f' % ((o.price/ 100.00)+((o.price/ 100.00)* 0.0825)) %></h4>
 				</div>
 			</div>
 		<% end %>
@@ -84,7 +84,7 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-md-11">
-							<h4 id="name"><%= current_user.fname %></h4>
+							<h4 id="name"><%= current_user.fname %><span style="float: right">Completed by: <%=o.accepted_by%></span></h4>
 						</div>
 					</div>
 				</div>
@@ -99,7 +99,6 @@
 					  <tr>
 						<td>
 							<p id="com"><span style="font-weight:bold;color:#E10580">Order:</span> <%= o.order_description %></p>
-							<p> Grand Total: <%= '%.2f' % ((@o.price/ 100.00)* 0.0825) %></p>
 						</td>
 					</tr>
 					<tr>
@@ -109,6 +108,7 @@
 					  </tr>
 				</tbody>
 			  </table>
+			  <h4 style="float: right"><span style="color:#41369F"> Paid:</span> $<%= '%.2f' % (o.grand_total/100.00) %></h4>
 				</div>
 			</div>
 		<% end %>
