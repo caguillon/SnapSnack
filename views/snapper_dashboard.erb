@@ -7,7 +7,7 @@
 </div>
 
 <h2 style="color:#41369F">Accepted Orders</h2>
-<% @orders.each do |o| %>
+<% @rev.each do |o| %>
 	<!-- Orders that have been accepted by current snapper -->
 	<% if o.completed == false && o.post_accepted == true && o.accepted_by == current_user.email %>
 		<div class="card bg-light mb-3 w-100">
@@ -33,7 +33,7 @@
 <br/><hr>
 
 <h2 style="color:#41369F">Available Orders</h2>
-<% @rev.each do |o| %>
+<% @ttc.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == false && o.post_accepted == false %>
 		<div class="card w-100 mt-2">
@@ -59,7 +59,7 @@
 <br/><hr>
 
 <h2 style="color:#41369F">Completed Orders</h2>
-<% @orders.each do |o| %>
+<% @rev.each do |o| %>
 	<!-- Orders that are available -->
 	<% if o.completed == true && o.accepted_by == current_user.email %>
 	<p hidden><%= current_user.deliveries_completed += 1 %></p>

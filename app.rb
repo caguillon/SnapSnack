@@ -61,7 +61,8 @@ get "/dashboard/snapper" do
 	authenticate!
 	snapify!
 	@orders = Order.all
-	@rev = @orders.sort_by{ |h| h[:time_to_be_completed] } #ordering by the time to be completed on snapper dashboard
+	@ttc = @orders.sort_by{ |h| h[:time_to_be_completed] } #ordering by the time to be completed on snapper dashboard
+	@rev = @orders.sort_by{ |h| h[:id] }.reverse!
 	erb :snapper_dashboard
 end
 
