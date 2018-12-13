@@ -294,3 +294,17 @@ post "/delivery/completeo" do
 	
 	redirect "/dashboard/snapper"
 end
+
+post "/dashboard/cancel_order" do
+	authenticate!
+	oid = params["cancel"]
+	if oid
+		o = Order.get(oid.to_i)
+	end
+
+	if o
+		o.destroy
+	end
+	
+	redirect "/dashboard"
+end

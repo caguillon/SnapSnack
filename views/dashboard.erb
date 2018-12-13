@@ -43,7 +43,11 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h4 id="name" style="color:#41369F"><%= current_user.fname %><span style="float: right"><%= o.created_at.strftime("%d/%m/%Y %H:%M %p")%>
-							<button type="button" class="btn btn-primary btn-sm">CANCEL</button></span></h4>
+							<!-- Snappers complete an order -->
+							<form method="post" action="/dashboard/cancel_order">
+				    	<input type="hidden" name="cancel" value=<%= o.id %>>
+				    	<input class="btn btn-primary btn-sm" type="CANCEL" value="CANCEL" style="background-color:#41369F">
+							</form>
 						</div>
 					</div>
 				</div>
@@ -67,7 +71,7 @@
 		  				</tr>
 					</tbody>
 				  </table>
-				  <h4 style="float: right"><span style="color:#41369F"> Amount Due:</span> $<%= '%.2f' % ((o.price/ 100.00)+((o.price/ 100.00)* 0.0825)) %></h4>
+				  <h4 style="float: right"><span style="color:#41369F"> Amount Due:</span> $<%= '%.2f' % (o.grand_total / 100.00) %></h4>
 				</div>
 			</div>
 		<% end %>
