@@ -43,11 +43,6 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h4 id="name" style="color:#41369F"><%= current_user.fname %><span style="float: right"><%= o.created_at.strftime("%d/%m/%Y %H:%M %p")%>
-							<!-- Snappers complete an order -->
-							<form method="post" action="/dashboard/cancel_order">
-				    	<input type="hidden" name="cancel" value=<%= o.id %>>
-				    	<input class="btn btn-primary btn-sm" type="CANCEL" value="CANCEL" style="background-color:#41369F">
-							</form>
 						</div>
 					</div>
 				</div>
